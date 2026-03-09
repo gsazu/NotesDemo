@@ -15,7 +15,7 @@ class AuthInterceptor @Inject constructor(
 
         // Check if the endpoint requires Authentication
         // By default, we assume it DOES NOT unless we add @Headers("Requires-Auth: true")
-        val requiresAuth = request.header("Requires-Auth") == "true"
+        val requiresAuth = request.header("Auth") == "true"
 
         if (requiresAuth) {
             val token = sharedPreferences.getString("auth_token", null)
@@ -23,7 +23,7 @@ class AuthInterceptor @Inject constructor(
                 requestBuilder.addHeader("Authorization", "Bearer $token")
             }
             // Remove the dummy header so it doesn't get sent to the server
-            requestBuilder.removeHeader("Requires-Auth")
+            requestBuilder.removeHeader("Auth")
         }
 
         return chain.proceed(requestBuilder.build())

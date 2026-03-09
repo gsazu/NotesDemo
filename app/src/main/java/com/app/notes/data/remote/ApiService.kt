@@ -16,10 +16,10 @@ interface ApiService {
     /**
      * FAKE API ENDPOINT EXAMPLE:
      * This endpoint REQUIRES authentication.
-     * By adding `@Headers("Requires-Auth: true")`, our AuthInterceptor
+     * By adding `@Headers("Auth: true")`, our AuthInterceptor
      * will automatically attach the "Authorization: Bearer <token>" to it.
      */
-    @Headers("Requires-Auth: true")
+    @Headers("Auth: true")
     @GET("fake/endpoint/path")
     suspend fun getFakeData(): FakeDto
 }
